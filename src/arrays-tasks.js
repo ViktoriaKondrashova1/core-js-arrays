@@ -394,6 +394,11 @@ function generateOdds(len) {
  */
 function getElementByIndices(/* arr, indices */) {
   throw new Error('Not implemented');
+  // const res = [];
+  // const level = indices.length;
+  // if (level !== 1) {
+  //   indices.map((el) => res.push([el]))
+  // } else return arr[indices]
 }
 
 /**
@@ -408,8 +413,8 @@ function getElementByIndices(/* arr, indices */) {
  *  getFalsyValuesCount([ -1, 'false', null, 0 ]) => 2
  *  getFalsyValuesCount([ null, undefined, NaN, false, 0, '' ]) => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  return arr.filter((el) => Boolean(el) === false).length;
 }
 
 /**
@@ -445,8 +450,10 @@ function getIdentityMatrix(/* n */) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
+function getIndicesOfOddNumbers(numbers) {
+  const res = [];
+  numbers.map((el, idx) => (el % 2 !== 0 ? res.push(idx) : el));
+  return res;
 }
 
 /**
@@ -477,8 +484,9 @@ function getHexRGBValues(/* arr */) {
  *   getMaxItems([ 10, 2, 7, 5, 3, -5 ], 3) => [ 10, 7, 5 ]
  *   getMaxItems([ 10, 10, 10, 10 ], 3) => [ 10, 10, 10 ]
  */
-function getMaxItems(/* arr, n */) {
-  throw new Error('Not implemented');
+function getMaxItems(arr, n) {
+  const sorted = arr.sort((a, b) => b - a);
+  return sorted.slice(0, n);
 }
 
 /**
@@ -526,8 +534,11 @@ function findLongestIncreasingSubsequence(/* nums */) {
  *  propagateItemsByPositionIndex([ 'a', 'b', 'c', null ]) => [ 'a', 'b', 'b', 'c', 'c', 'c',  null, null, null, null ]
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  return arr.reduce(
+    (acc, el, idx) => acc.concat(Array.from({ length: idx + 1 }, () => el)),
+    []
+  );
 }
 
 /**
