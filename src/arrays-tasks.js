@@ -222,8 +222,8 @@ function getTail(arr, n) {
  *    doubleArray([0, 1, 2, 3, 4, 5]) => [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
  *    doubleArray([]) => []
  */
-function doubleArray(/* arr */) {
-  throw new Error('Not implemented');
+function doubleArray(arr) {
+  return arr.concat(arr);
 }
 
 /**
@@ -237,8 +237,8 @@ function doubleArray(/* arr */) {
  *    toStringList([1, 2, 3, 4, 5]) => '1,2,3,4,5'
  *    toStringList(['rock', 'paper', 'scissors']) => 'rock,paper,scissors'
  */
-function toStringList(/* arr */) {
-  throw new Error('Not implemented');
+function toStringList(arr) {
+  return arr.join();
 }
 
 /**
@@ -253,8 +253,8 @@ function toStringList(/* arr */) {
  *   distinct([ 1, 1, 2, 2, 3, 3, 4, 4]) => [ 1, 2, 3, 4]
  *   distinct([]) => []
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  return [...new Set(arr)];
 }
 
 /**
@@ -272,6 +272,12 @@ function distinct(/* arr */) {
  */
 function createNDimensionalArray(/* n, size */) {
   throw new Error('Not implemented');
+  // Array(size).fill(Array(size).fill(0));
+  // let arr = Array(size);
+  // for (let i = 0; i < n; i++) {
+  //   arr[i] = Array(size).fill(Array(size).fill(0))
+  // }
+  // return arr
 }
 
 /**
@@ -285,8 +291,8 @@ function createNDimensionalArray(/* n, size */) {
  *    flattenArray(['a', ['b', ['c', 'd'], 'e'], 'f']) => ['a', 'b', 'c', 'd', 'e', 'f']
  *    flattenArray([1, 2, 3, 4]) => [1, 2, 3, 4]
  */
-function flattenArray(/* nestedArray */) {
-  throw new Error('Not implemented');
+function flattenArray(nestedArray) {
+  return nestedArray.flat(Infinity);
 }
 
 /**
@@ -302,8 +308,8 @@ function flattenArray(/* nestedArray */) {
  *   selectMany([[1, 2], [3, 4], [5, 6]], (x) => x) =>   [ 1, 2, 3, 4, 5, 6 ]
  *   selectMany(['one','two','three'], (x) => x.split('')) =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  return arr.flatMap(childrenSelector);
 }
 
 /**
@@ -319,8 +325,11 @@ function selectMany(/* arr, childrenSelector */) {
  *   calculateBalance([ [ 10, 8 ], [ 1, 5 ] ])  => (10 - 8) + (1 - 5) = 2 + -4 = -2
  *   calculateBalance([]) => 0
  */
-function calculateBalance(/* arr */) {
-  throw new Error('Not implemented');
+function calculateBalance(arr) {
+  const flat = arr.flat();
+  const income = flat[0] - flat[1];
+  const expence = flat[2] - flat[3];
+  return Number.isNaN(income + expence) ? 0 : income + expence;
 }
 
 /**
@@ -337,6 +346,20 @@ function calculateBalance(/* arr */) {
  */
 function createChunks(/* arr, chunkSize */) {
   throw new Error('Not implemented');
+  // const res = [];
+  // for (let i = 0; arr.length; i += 1) {
+  //   if (arr.length > chunkSize) {
+  //     res.push([]);
+  //     for (let j = 0; j < chunkSize; j += 1) {
+  //       res[i].push(arr[j]);
+  //     }
+  //     arr.splice(0, chunkSize);
+  //   } else {
+  //     res.push([...arr]);
+  //     arr.splice(0);
+  //   }
+  // }
+  // return res;
 }
 
 /**
@@ -351,8 +374,10 @@ function createChunks(/* arr, chunkSize */) {
  *    generateOdds(2) => [ 1, 3 ]
  *    generateOdds(5) => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  const start = 1;
+  const step = 2;
+  return Array.from({ length: len }, (_, index) => start + index * step);
 }
 
 /**
