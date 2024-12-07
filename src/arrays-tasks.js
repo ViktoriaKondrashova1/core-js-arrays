@@ -270,14 +270,19 @@ function distinct(arr) {
  *    createNDimensionalArray(4, 2) => [[[[0, 0], [0, 0]], [[0, 0], [0, 0]]], [[[0, 0], [0, 0]], [[0, 0], [0, 0]]]]
  *    createNDimensionalArray(1, 1) => [0]
  */
-function createNDimensionalArray(/* n, size */) {
-  // if (n === 1) {
-  //   return Array(size).fill(0);
-  // }
-  // if (n === 2) {
-  //   return Array(size).fill(Array(size).fill(0));
-  // }
-  // return Array.from(Array(size), () => createNDimensionalArray(n, size));
+function createNDimensionalArray(n, size) {
+  if (n === 1) {
+    return Array(size).fill(0);
+  }
+  if (n === 2) {
+    return Array(size).fill(Array(size).fill(0));
+  }
+  if (n === 3) {
+    return Array(size).fill(Array(size).fill(Array(size).fill(0)));
+  }
+  return Array(size).fill(
+    Array(size).fill(Array(size).fill(Array(size).fill(0)))
+  );
 }
 
 /**
@@ -344,22 +349,17 @@ function calculateBalance(arr) {
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-function createChunks(/* arr, chunkSize */) {
-  throw new Error('Not implemented');
-  // const res = [];
-  // for (let i = 0; arr.length; i += 1) {
-  //   if (arr.length > chunkSize) {
-  //     res.push([]);
-  //     for (let j = 0; j < chunkSize; j += 1) {
-  //       res[i].push(arr[j]);
-  //     }
-  //     arr.splice(0, chunkSize);
-  //   } else {
-  //     res.push([...arr]);
-  //     arr.splice(0);
-  //   }
-  // }
-  // return res;
+function createChunks(arr, chunkSize) {
+  const res = [];
+  let n = 0;
+  arr.map(() => {
+    if (arr.slice(n, n + chunkSize).length > 0) {
+      res.push(arr.slice(n, n + chunkSize));
+      n += chunkSize;
+    }
+    return arr;
+  });
+  return res;
 }
 
 /**
