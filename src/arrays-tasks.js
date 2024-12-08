@@ -392,13 +392,12 @@ function generateOdds(len) {
  *   getElementByIndices(['one','two','three'], [2]) => 'three'  (arr[2])
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
-function getElementByIndices(/* arr, indices */) {
-  throw new Error('Not implemented');
-  // const res = [];
-  // const level = indices.length;
-  // if (level !== 1) {
-  //   indices.map((el) => res.push([el]))
-  // } else return arr[indices]
+function getElementByIndices(arr, indices) {
+  const level = indices.length;
+  if (level === 1) return arr[indices];
+  if (level === 2) return arr[indices[0]][indices[1]];
+  if (level === 3) return arr[indices[0]][indices[1]][indices[2]];
+  return arr;
 }
 
 /**
@@ -522,8 +521,22 @@ function findCommonElements(arr1, arr2) {
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
-function findLongestIncreasingSubsequence(/* nums */) {
-  throw new Error('Not implemented');
+function findLongestIncreasingSubsequence(nums) {
+  const res = [];
+  let n = 0;
+  nums.map((el, idx) => {
+    if (idx === nums.length - 1) res.push(n + 1);
+
+    if (el < nums[idx + 1]) {
+      n += 1;
+    }
+    if (el > nums[idx + 1]) {
+      res.push(n + 1);
+      n = 0;
+    }
+    return res;
+  });
+  return Math.max.apply(null, res);
 }
 
 /**
